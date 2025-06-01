@@ -1,0 +1,48 @@
+class Polynomial:
+    def __init__(self, coefficients):
+        self.coefficients = coefficients
+
+    def __str__(self):
+        terms = []
+        for i, coef in enumerate(self.coefficients):
+            if coef != 0:
+                term = f"{coef}x^{i}" if i > 0 else f"{coef}"
+                terms.append(term)
+        return " + ".join(reversed(terms))
+
+    def __add__(self, other):
+        max_len = max(len(self.coefficients), len(other.coefficients))
+        new_coefficients = [0] * max_len
+
+        for i in range(len(self.coefficients)):
+            new_coefficients[i] += self.coefficients[i]
+
+        for i in range(len(other.coefficients)):
+            new_coefficients[i] += other.coefficients[i]
+
+        return Polynomial(new_coefficients)
+
+    def degree(self):
+        return len(self.coefficients) - 1
+
+poly1 = Polynomial([1, 2, 3]) 
+poly2 = Polynomial([0, 1, 4])
+poly_sum = poly1 + poly2
+
+print("poly1:", poly1)
+print("\npoly2:", poly2)
+print("\nSum:", poly_sum)
+print("\nDegree polysum:", poly_sum.degree())
+
+
+
+#خروجی
+
+poly1: 3x^2 + 2x^1 + 1
+
+poly2: 4x^2 + 1x^1
+
+Sum: 7x^2 + 3x^1 + 1
+
+Degree polysum: 2
+

@@ -1,0 +1,28 @@
+def is_valid_discount(code):
+    letters = [c for c in code if c.islower()]
+    digits = [c for c in code if c.isdigit()]
+    
+    return letters == sorted(letters) and digits == sorted(digits)
+
+n = int(input())
+for _ in range(n):
+    code = input().strip()
+    print("YES" if is_valid_discount(code) else "NO")
+
+
+
+#نمونه ای از ورودی خط بعدی
+
+4
+ab123
+321abc
+a1b2c3
+abc321
+
+#خروجی
+
+YES
+NO
+YES
+NO
+
